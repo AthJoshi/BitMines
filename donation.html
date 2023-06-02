@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Portal</title>
+  <link rel="stylesheet" href="c.css">
+</head>
+<body>
+  <header>
+    <h1>Donation Portal</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Donor Sign Up</h2>
+      <form id="donor-signup-form"  name="submit-to-google-sheet">
+        <div class="form-group">
+          <label for="donor-name">Name:</label>
+          <input type="text" placeholder="Enter donor name" name="donor-name" required>
+        </div>
+        <div class="form-group">
+          <label for="donor-email">Email:</label>
+          <input type="email" placeholder="Enter email address" name="donor-email" required>
+        </div>
+        <div class="form-group">
+          <label for="donor-password">Password:</label>
+          <input type="password" placeholder="Enter email" name="donor-password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2>NGO Sign Up</h2>
+      <form id="ngo-signup-form" name="submit-to-google-sheet">
+        <div class="form-group">
+          <label for="ngo-name">Name:</label>
+          <input type="text" placeholder="Enter NGO name" name="ngo-name" required>
+        </div>
+        <div class="form-group">
+          <label for="ngo-email">Email:</label>
+          <input type="email" placeholder="Enter email address" name="ngo-email" required>
+        </div>
+        <div class="form-group">
+          <label for="ngo-password">Password:</label>
+          <input type="password" placeholder="Enter password" name="ngo-password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2>Login</h2>
+      <form id="login-form"  name="submit-to-google-sheet">
+        <div class="form-group">
+          <label for="login-email">Email:</label>
+          <input type="email" placeholder="Enter email address" name="login-email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password:</label>
+          <input type="password" placeholder="Enter password" name="login-password" required>
+        </div>
+        <div class="form-group">
+          <label for="user-type">User Type:</label>
+          <select id="user-type">
+            <option value="donor">Donor</option>
+            <option value="ngo">NGO</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzwffRyQRhBUVhzIfVw3tlJR7AucibFLjz3YfSbTRuOhI3hqAiGnCTBWRqj70lpZNdh/exec'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+  <script src="j.js"></script>
+  
+
+
+</body>
+</html>
